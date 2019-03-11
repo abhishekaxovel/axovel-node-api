@@ -1,11 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const cors = require('cors')
+const cors = require('cors');
+const bcrypt = require('bcrypt');
 
-// initialize our express app
+const app = express();
+app.use(cors());
 
+
+// routes
 const user = require('./routes/user.route'); 
-// Imports routes for the products
 
 
 // email
@@ -23,7 +26,7 @@ const user = require('./routes/user.route');
 //     from: 'abhishek1512s@gmail.com',
 //     to: 'abhishek.axovel@gmail.com',
 //     subject: 'Sending Email using Node.js',
-//     text: 'That was easy!'
+//     text: 'hello axovel....'
 //   };
   
 //   transporter.sendMail(mailOptions, function(error, info){
@@ -34,10 +37,6 @@ const user = require('./routes/user.route');
 //     }
 //   });
 
-
-//
-const app = express();
-app.use(cors());
 
 // Set up mongoose connection
 const mongoose = require('mongoose');
@@ -57,7 +56,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 app.use('/users', user);
 
-let port = 3700;
+let port = 4100;
 
 app.listen(port, () => {
     console.log('Server is up and running on port numner ' + port);

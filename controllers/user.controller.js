@@ -1,4 +1,6 @@
 const User = require('../models/user.model');
+const Bcrypt = require('bcrypt');
+var nodemailer = require('nodemailer');
 
 //Simple version, without validation or sanitation
 exports.test = function (req, res) {
@@ -8,6 +10,8 @@ exports.test = function (req, res) {
 
 
 exports.user_create = function (req, res, next) {
+    console.log('before bycrypt password', req.body.userData.password);
+    req.body.userData.password = Bcrypt.hashSync(req.body.userData.password, 8);
     console.log('data here', req.body);
     user = new User.User(req.body.userData);
     user.save(function (err) {
