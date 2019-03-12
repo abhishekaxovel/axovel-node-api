@@ -1,6 +1,6 @@
 const User = require('../models/user.model');
 const Bcrypt = require('bcrypt');
-var nodemailer = require('nodemailer');
+const nodemailer = require('nodemailer');
 
 //Simple version, without validation or sanitation
 exports.test = function (req, res) {

@@ -6,28 +6,24 @@ const Bcrypt = require('bcrypt');
 exports.user_log_in = function (req, res, next) {
     console.log('data here', req.body);
     const email = req.body.logIn.email;
-    var password = req.body.logIn.password;
-
-    // const password = Bcrypt.compareSync(req.body.logIn.password, req.body.logIn.password);
-    // Bcrypt.compareSync(req.body.logIn.password, user.password);
-    // console.log('password', req.body.logIn.password);
-
-    req.body.logIn.password = Bcrypt.compareSync(req.body.logIn.password, password);
-    if (req.body.logIn.password) {
-        console.log("Password correct");
-    } else {
-        console.log("Password wrong");
-    }
-    console.log('password', req.body.logIn.password);
-    user = User.User;   
-    user.findOne({email: email, password: password}, function(err, user) {
-      if(err) return next(err);
-      if(!user) return res.send('Not logged in!');
-      req.body.user = email;
-      req.body.user = password;
-      return res.send('Logged In!');
-   })
-
+    const password = req.body.logIn.password;
+    user = User.User;
+    user.findOne({email: email}, function(err, user) {
+    if(err) return next(err);
+    if(user){
+        Bcrypt.compare(password, user.password).then (function(res){
+            console.log('res here', res);
+            if(res){
+                console.log('success');
+                // return res.send('user loged in'); 
+            }else{
+                console.log('not correct');
+                // return res.send('password is incorrect');
+            }
+         },
+         function(err){ console.log(err); });
+        }
+    })  
 };
 
     exports.is_user_log_in = function isLoggedIn (req, res, next) {
