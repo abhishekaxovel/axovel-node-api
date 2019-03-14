@@ -11,17 +11,20 @@ exports.user_log_in = function (req, res, next) {
     user.findOne({email: email}, function(err, user) {
     if(err) return next(err);
     if(user){
-        Bcrypt.compare(password, user.password).then (function(res){
-            console.log('res here', res);
-            if(res){
-                console.log('success');
-                // return res.send('user loged in'); 
+        let role = user.role;
+        console.log('role here...', role);
+        Bcrypt.compare(password, user.password).then (function(data){
+            console.log('data here', data);
+            if(data){
+                console.log('success', data);
+                return res.status(200)
+                    .json({data:data, role:role}); 
             }else{
-                console.log('not correct');
-                // return res.send('password is incorrect');
+                console.log('not correct', data);
+                return res.status(200) 
+                .json(data);
             }
-         },
-         function(err){ console.log(err); });
+         });
         }
     })  
 };
