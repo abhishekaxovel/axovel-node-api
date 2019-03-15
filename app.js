@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const app = express();
 app.use(cors());
@@ -23,14 +24,12 @@ const user = require('./routes/user.route');
 //         pass: ''
 //     }
 //   });
-  
 //   var mailOptions = {
 //     from: 'abhishek1512s@gmail.com',
 //     to: 'abhishek.axovel@gmail.com',
 //     subject: 'Sending Email using Node.js',
 //     text: 'hello axovel....'
 //   };
-  
 //   transporter.sendMail(mailOptions, function(error, info){
 //     if (error) {
 //       console.log('errorrrr...',error);
@@ -59,7 +58,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 app.use('/users', user);
 
-let port = 5300;
+let port = 5400;
 
 app.listen(port, () => {
     console.log('Server is up and running on port numner ' + port);
