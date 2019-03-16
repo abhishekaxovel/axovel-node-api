@@ -13,18 +13,15 @@ exports.user_log_in = function (req, res, next) {
     if(err) return next(err);
     if(user){
         let role = user.role;
-        // console.log('role here...', role);
+        let email = user.email;
         Bcrypt.compare(password, user.password).then (function(data){
             console.log('data here', data);
             if(data){
-
-                // let token = jwt.sign({ email: user.email }, 
-                //     config.secret, { expiresIn: 86400 });
-                // console.log('token...', token);
-
                 console.log('success', data);
                 return res.status(200)
-                    .json({data:data, role:role, user}); 
+                .json({token: jwt.sign({ data: data, role: role, user}, 'APIs', {
+                    expiresIn: 60 * 24 // expires in 24 hours
+                })}); 
             }else{
                 console.log('not correct', data);
                 return res.status(200) 
