@@ -58,7 +58,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 app.use('/users', user);
 
-let port = 3100;
+let port = 3200;
 
 app.listen(port, () => {
     console.log('Server is up and running on port numner ' + port);

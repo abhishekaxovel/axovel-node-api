@@ -20,7 +20,7 @@ exports.user_log_in = function (req, res, next) {
                 console.log('success', data);
                 return res.status(200)
                 .json({token: jwt.sign({ data: data, role: role, user}, 'APIs', {
-                    expiresIn: 60 * 24 // expires in 24 hours
+                    // expiresIn: 60 * 24 // expires in 24 hours
                 })}); 
             }else{
                 console.log('not correct', data);
