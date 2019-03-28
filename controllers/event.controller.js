@@ -2,8 +2,8 @@ const Event = require('../models/event.model');
 
 
 exports.event_create = function (req, res, next) {
-    console.log('data here', req.body.item);
-    event = new Event.Event(req.body.item);
+    console.log('data here', req.body.eventData);
+    event = new Event.Event(req.body.eventData);
     event.save(function (err) {
         console.log('event created...', event);
         if (err) {
