@@ -3,6 +3,9 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+var multer  = require('multer');
+var path = require('path');
+var fs = require('fs');
 
 const app = express();
 app.use(cors());
@@ -11,6 +14,36 @@ app.use(cors());
 // routes
 const user = require('./routes/user.route');
 const event = require('./routes/event.route'); 
+
+
+// upload images
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'uploads/')
+    },
+    filename: function (req, file, cb) {
+      cb(null, Date.now() + path.extname(file.originalname))
+    }
+  });
+  
+var upload = multer({ storage: storage });
+
+
+app.post('/uploads', upload.single('image'), (req, res) => {
+    sightengine.check(['nudity']).set_url(path.join(req.file.path)).then((result) => {
+      if(result.nudity.safe >= result.nudity.partial && result.nudity.safe >= result.nudity.raw) {
+          return res.json({ error: false, message: 'Success ! your image was upload successfully'});
+      } else {
+        fs.unlinkSync(path.join(req.file.path));
+        return res.json({ error: true, message: 'Error ! your image contain nudity content !'});
+      }
+    }).catch(function(err) {
+      console.log(err); // catch your error
+    });
+  });
+
+
+
 
 
 // email
