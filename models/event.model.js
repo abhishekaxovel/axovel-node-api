@@ -12,7 +12,7 @@ let EventSchema = new Schema({
     event_schedule: [
         {place: String, details: String, date: Date, time: String}
     ],
-    event_images: []
+    event_images: String
 });
 
 Event = mongoose.model('Event', EventSchema, 'events');

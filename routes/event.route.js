@@ -9,6 +9,8 @@ router.get('/get_event', event_controller.event_details);
 router.post('/update_event', event_controller.event_update);
 router.post('/delete_event', event_controller.event_delete);
 
-
+router.post('/imageUpload', event_controller.uploadEventImage);
+// router.get('/getImages', event_controller.getImage);
+// router.post('/imageUpload', event_controller.uploadImages);
 
 module.exports = router;

@@ -10,17 +10,32 @@ exports.test = function (req, res) {
 
 
 exports.user_create = function (req, res, next) {
-    console.log('before bycrypt password', req.body.userData.password);
-    req.body.userData.password = Bcrypt.hashSync(req.body.userData.password, 8);
-    console.log('data here', req.body);
-    user = new User.User(req.body.userData);
-    user.save(function (err) {
-        console.log('user created...', user);
-        if (err) {
-            return next(err);
+    // console.log('data ...', req.body.userData);
+    user = User.User
+        user.findOne({email: req.body.userData.email}).then( data => {
+        if(data){
+            console.log('in if cond...')
+            message = "user exists";
+            console.log(message);
+            return res.status(200)
+                .json({message}); 
+            // res.send('User Exists');
+        }else{
+            console.log('before bycrypt password', req.body.userData.password);
+            req.body.userData.password = Bcrypt.hashSync(req.body.userData.password, 8);
+            console.log('data here', req.body);
+            user = new User.User(req.body.userData);
+            user.save(function (err) {
+                console.log('user created...', user);
+                return res.status(200)
+                .json({message: "user created"});
+                // if (err) {
+                //     return next(err);
+                // }
+                // res.send('User Created successfully');
+            });
         }
-        res.send('User Created successfully')
-    });
+     }) 
 };
 
 

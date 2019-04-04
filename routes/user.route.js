@@ -20,6 +20,8 @@ router.delete('/:id/delete', user_controller.user_delete);
 // user log-in
 router.post('/logIn', log_in_controller.user_log_in);
 router.get('/logout',log_in_controller.is_user_log_out);
+router.post('/forgot_password', log_in_controller.forgot_password);
+router.post('/update_password', log_in_controller.update_password);
 
 
 // event routes 
