@@ -57,6 +57,10 @@ exports.forgot_password = function (req, res, next) {
             .json(link);
        }
    })
+//     err => {
+//        console.log('err' , err);
+//        return next (err)
+//    }
 };
 
 
