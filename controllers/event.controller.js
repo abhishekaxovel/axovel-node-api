@@ -48,22 +48,7 @@ function event(req, res, next){
         }
         res.send('event Created successfully')
     });
-};
-
-// function eventInformation(req, res, next) {
-//   event = Event.EventDetails;
-//   event.find(req.body).then(eventDoc => {
-//     if(eventDoc) {
-//       return res.status(200)
-//         .json(eventDoc);
-//     }else {
-//       return res.status(404)
-//         .json({message: "No events found"});
-//     }
-//   },err => {
-//     return next(err);
-//   });
-// };
+}
 
 
 function event_create(req, res, next) {
@@ -76,7 +61,7 @@ function event_create(req, res, next) {
         }
         res.send('event Created successfully')
     });
-};
+}
 
 
 function event_details(req, res, next) {

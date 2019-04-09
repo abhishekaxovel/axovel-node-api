@@ -29,9 +29,9 @@ let EventDetailsSchema =new Schema({
     },
     Location: {
         venue: String,
-        addressLine1: String,
-        addressLine2: String,
-        addressLine3: String,
+        address1: String,
+        address2: String,
+        address3: String,
         city: String,
         state: String,
         zip: Number,
