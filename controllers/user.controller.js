@@ -43,6 +43,7 @@ exports.user_details = function (req, res, next) {
     user = User.User;
     user.find(req.body).then(userDoc => {
       if(userDoc) {
+        console.log(userDoc)
         return res.status(200)
           .json(userDoc);
       }else {

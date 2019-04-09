@@ -15,8 +15,41 @@ let EventSchema = new Schema({
     event_images: String
 });
 
+let EventDetailsSchema =new Schema({
+    eventId: String,
+    EventInformation: {
+        name: String,
+        description: String,
+        selected: String,
+        goal: Number,
+        people: Number,
+        startDate: Date,
+        endDate: Date,
+        deadLine: Date
+    },
+    Location: {
+        venue: String,
+        addressLine1: String,
+        addressLine2: String,
+        addressLine3: String,
+        city: String,
+        state: String,
+        zip: Number,
+        country: String,
+        phone: Number
+    },
+    Registration: {
+
+    },
+    Payments: {
+
+    }
+})
+
 Event = mongoose.model('Event', EventSchema, 'events');
+EventDetails = mongoose.model('EventDetails', EventDetailsSchema, 'eventDetails');
 // Export the model
 module.exports = {
-    Event: Event
+    Event: Event,
+    EventDetails: EventDetails
 };

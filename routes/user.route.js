@@ -25,8 +25,8 @@ router.post('/update_password', log_in_controller.update_password);
 
 
 // event routes 
-router.post('/create_event', event_controller.event_create);
 router.get('/get_event', event_controller.event_details);
+router.post('/create_event', event_controller.event_create);
 router.post('/update_event', event_controller.event_update);
 router.post('/delete_event', event_controller.event_delete);
 
