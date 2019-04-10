@@ -39,10 +39,11 @@ let EventDetailsSchema =new Schema({
         phone: Number
     },
     Registration: {
-
+        currency: ''
     },
     Payments: {
-
+        paymentMethod: String,
+        amount: Number
     }
 })
 
